@@ -13,66 +13,69 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  Suggestion? visibleSuggestion;
 
   @override
   Widget build(BuildContext context) {
-    Suggestion? visibleSuggestion;
-
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: Container(
         child: visibleSuggestion != null
             ? Center(
-                child: Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
-                      //mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Category ${visibleSuggestion.activity}",
-                          style: TextStyle(fontSize: 30),
-                        ),
-                      ],
+                child: Container(
+                  height: 100,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        //mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "${visibleSuggestion!.activity}",
+                            style: const TextStyle(fontSize: 25),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               )
-            : Center(child: Text("No Random suggestion loaded yet")),
+            : const Center(child: Text("No Random suggestion loaded yet")),
       ),
       floatingActionButton: FloatingActionButton(
-    
         tooltip: 'next',
         child: const Icon(Icons.skip_next),
-            onPressed: () {
-              //TODO 5: call our service from our controller
-              //TDo 6 : await for our service to return a value
+        onPressed: () async {
+          //TODO 5: call our service from our controller
+          //TDo 6 : await for our service to return a value
 
-              //locator.get<ApiService>().getSuggestion();
-              // locator.get<ApiService>().getSuggestion().then((value) {
-              //   setState(() {
-              //     visibleSuggestion = value;
-              //   });
-              // });
-              // locator.get<SuggestionController>().getNextSuggestion().then((value) {
-              //   setState(() {
-              //     visibleSuggestion = value;
-              //   });
-              // });
-             Suggestion suggestion = locator.get<SuggestionController>().getNextSuggestion();
+          //locator.get<ApiService>().getSuggestion();
+          //locator.get<ApiService>().getSuggestion().then((value) {
+          //   setState(() {
+          //     visibleSuggestion = value;
+          //   });
+          // });
+          //  locator.get<SuggestionController>().getNextSuggestion().then((value) {
+          //     setState(() {
+          //       visibleSuggestion = value;
+          //     });
+          //   });
+          Suggestion suggestion =
+              await locator.get<SuggestionController>().getNextSuggestion();
 
-              //TODO 7 Use Setsate to update our UI
-              setState(() {
-                visibleSuggestion = suggestion;
-              });
-            },
-      ), // 
+          print(":::::suggestion:::::$suggestion:::::::");
+
+          //TODO 7 Use Setsate to update our UI
+          setState(() {
+            print(":::setState:::Pressed:::::::");
+            visibleSuggestion = suggestion;
+          });
+        },
+      ), //
     );
   }
 }
