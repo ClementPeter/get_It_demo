@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.skip_next),
         onPressed: () async {
           //TODO 5: call our service from our controller
-          //TDo 6 : await for our service to return a value
+          //TODO 6 : await for our service to return a value
 
           //locator.get<ApiService>().getSuggestion();
           //locator.get<ApiService>().getSuggestion().then((value) {

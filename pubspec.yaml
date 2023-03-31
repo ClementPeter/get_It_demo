@@ -37,7 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: any
-  # TODO 1 - Dependon GetIt
+  # TODO 1 - Depend on GetIt
   get_it: ^7.2.0
 
 dev_dependencies:

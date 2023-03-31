@@ -1,6 +1,6 @@
 //controller for our app to get next boring task
 
-import 'package:get_it_demo/services/api_service.dart';
+import 'package:get_it_demo/services/getSuggestion_service.dart';
 
 import '../locator.dart';
 
@@ -11,6 +11,7 @@ class SuggestionController {
     // return await locator<ApiService>().getSuggestion();
 
     //locator uses the <type> to access the methods from the service
-    return await locator.get<ApiService>().getSuggestion();
+
+      return await locator.get<ApiService>().getSuggestion();
   }
 }
