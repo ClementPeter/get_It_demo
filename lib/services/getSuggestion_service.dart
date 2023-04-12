@@ -5,7 +5,7 @@ import 'package:get_it_demo/domain/models/suggestion.dart';
 // This class is responsible for fetching memes from the API
 
 class ApiService {
-  Future<Suggestion> getSuggestion() async {
+  Future<Suggestion> getSuggestionfromAPI() async {
     // try {
     //   var url = Uri.parse('https://some-random-api.ml/meme');
     //   //var response = await http.get(url);
