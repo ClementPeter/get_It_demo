@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get_it_demo/domain/models/suggestion.dart';
+import 'package:get_it_demo/models/suggestion.dart';
 import 'package:get_it_demo/locator.dart';
 import 'package:get_it_demo/view/home_page.dart';
 
+//Demo to use Get It for Service Locator
 void main() {
   //TODO 4: call our setupLocator function and register our GetIt Services
   setupLocator();

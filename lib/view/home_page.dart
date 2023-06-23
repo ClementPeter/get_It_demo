@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get_it_demo/domain/models/suggestion.dart';
+import 'package:get_it_demo/models/suggestion.dart';
 import 'package:get_it_demo/domain/suggestion_controller.dart';
 import 'package:get_it_demo/locator.dart';
 
@@ -48,7 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         tooltip: 'next',
         child: const Icon(Icons.skip_next),
-        onPressed: () async {
+        onPressed: () {
+          //add code forloading indicator
+
           //TODO 5: call our service from our controller
           //TODO 6 : await for our service to return a value
 
@@ -63,15 +65,26 @@ class _MyHomePageState extends State<MyHomePage> {
           //       visibleSuggestion = value;
           //     });
           //   });
-          Suggestion suggestion =
-              await locator.get<SuggestionController>().getNextSuggestion();
+          const CircularProgressIndicator(
+            color: Colors.blue,
+          );
+          // Future.delayed(Duration(seconds: 5), () {
+          //   CircularProgressIndicator(
+          //     color: Colors.blue,
+          //   );
+          // });
+          // Suggestion suggestion =
+          //     await locator.get<SuggestionController>().getNextSuggestion();
 
-          print(":::::suggestion:::::$suggestion:::::::");
+          //print(":::::suggestion:::::$suggestion:::::::");
 
           //TODO 7 Use Setsate to update our UI
           setState(() {
+            const CircularProgressIndicator(
+              color: Colors.blue,
+            );
             print(":::setState:::Pressed:::::::");
-            visibleSuggestion = suggestion;
+            //visibleSuggestion = suggestion;
           });
         },
       ), //

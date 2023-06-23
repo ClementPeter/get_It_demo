@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:get_it_demo/domain/models/suggestion.dart';
+import 'package:get_it_demo/models/suggestion.dart';
 
 // This class is responsible for fetching memes from the API
 
@@ -25,5 +25,3 @@ class ApiService {
     return Suggestion.fromJson(bodyData);
   }
 }
-
-
