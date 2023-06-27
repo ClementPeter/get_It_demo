@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it_demo/models/suggestion.dart';
 import 'package:get_it_demo/locator.dart';
 import 'package:get_it_demo/view/home_page.dart';
 
