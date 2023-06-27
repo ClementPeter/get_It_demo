@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it_demo/base_model.dart';
 import 'package:get_it_demo/models/suggestion.dart';
 import 'package:get_it_demo/controllers/suggestion_controller.dart';
 import 'package:get_it_demo/locator.dart';
 import 'package:get_it_demo/services/getSuggestion_service.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MyHomePage extends BaseModel {
+  MyHomePage({required this.title});
 
   final String title;
 
-  @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
@@ -80,34 +80,33 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         tooltip: 'next',
         child: const Icon(Icons.skip_next),
-        // onPressed: () {
-        //   startLoading();
-        //   if (isLoading == true) {
-        //     CircularProgressIndicator(
-        //       color: Colors.blue,
-        //     );
-        //   }
-        // }
-
         onPressed: () async {
           //add code for loading indicator
-          startLoading(true);
+          startLoading(true); //Set app to laoding state to true
 
           //TODO 5: call our service from our controller
           //TODO 6 : await for our service to return a value
 
-          //locator.get<ApiService>().getSuggestion();
-          await locator.get<ApiService>().getSuggestionfromAPI().then((value) {
+          //calling Suggestion from API directly with Get-It
+          // await locator.get<ApiService>().getSuggestionfromAPI().then((value) {
+          //   setState(() {
+          //     visibleSuggestion = value;
+          //   });
+          // });
+          // startLoading(false); //Set app to laoding state to false
+
+          //OR
+          //calling Suggestion from getNextSuggestion Controller directly with Get-It; which Indirectly calls Suggestion from API
+
+          await locator
+              .get<SuggestionController>()
+              .getNextSuggestion()
+              .then((value) {
             setState(() {
               visibleSuggestion = value;
             });
           });
           startLoading(false);
-          //  locator.get<SuggestionController>().getNextSuggestion().then((value) {
-          //     setState(() {
-          //       visibleSuggestion = value;
-          //     });
-          //   });
           // const CircularProgressIndicator(
           //   color: Colors.blue,
           // );
