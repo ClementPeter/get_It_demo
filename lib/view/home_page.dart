@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get_it_demo/base_model.dart';
+
 import 'package:get_it_demo/models/suggestion.dart';
 import 'package:get_it_demo/controllers/suggestion_controller.dart';
 import 'package:get_it_demo/locator.dart';
 import 'package:get_it_demo/services/getSuggestion_service.dart';
 
-class MyHomePage extends BaseModel {
-  MyHomePage({required this.title});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
+  @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
@@ -48,31 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
                         visibleSuggestion?.activity ?? "No Activity",
-                        style: const TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
-                  // Text(
-                  //   visibleSuggestion?.type ?? "No Type",
-                  //   style: const TextStyle(fontSize: 20),
-                  // ),
-                  // Text(
-                  //   visibleSuggestion?.participants.toString() ??
-                  //       "No Participants",
-                  //   style: const TextStyle(fontSize: 20),
-                  // ),
-                  // Text(
-                  //   visibleSuggestion?.price.toString() ?? "No Price",
-                  //   style: const TextStyle(fontSize: 20),
-                  // ),
-                  // Text(
-                  //   visibleSuggestion?.link ?? "No Link",
-                  //   style: const TextStyle(fontSize: 20),
-                  // ),
-                  // Text(
-                  //   visibleSuggestion?.key ?? "No Key",
-                  //   style: const TextStyle(fontSize: 20),
-                  // ),
                 ],
               ),
             ),
@@ -97,37 +80,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
           //OR
           //calling Suggestion from getNextSuggestion Controller directly with Get-It; which Indirectly calls Suggestion from API
-
-          await locator
-              .get<SuggestionController>()
-              .getNextSuggestion()
-              .then((value) {
-            setState(() {
-              visibleSuggestion = value;
-            });
-          });
-          startLoading(false);
-          // const CircularProgressIndicator(
-          //   color: Colors.blue,
-          // );
-          // Future.delayed(Duration(seconds: 5), () {
-          //   CircularProgressIndicator(
-          //     color: Colors.blue,
-          //   );
+          // await locator
+          //     .get<SuggestionController>()
+          //     .getNextSuggestion()
+          //     .then((value) {
+          //   setState(() {
+          //     visibleSuggestion = value;
+          //   });
           // });
-          // Suggestion suggestion =
-          //     await locator.get<SuggestionController>().getNextSuggestion();
+          // startLoading(false);
 
-          //print(":::::suggestion:::::$suggestion:::::::");
-
+          //LONGER ROUTE
+          Suggestion suggestion =
+              await locator.get<SuggestionController>().getNextSuggestion();
           //TODO 7 Use Setsate to update our UI
-          // setState(() {
-          //   const CircularProgressIndicator(
-          //     color: Colors.blue,
-          //   );
-          //   print(":::setState:::Pressed:::::::");
-          //   //visibleSuggestion = suggestion;
-          // });
+          setState(() {
+            print(":::setState:::Pressed:::::::");
+            visibleSuggestion = suggestion;
+          });
+          startLoading(false); //Set app to laoding state to false
         },
       ),
       //
