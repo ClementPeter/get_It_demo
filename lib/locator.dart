@@ -3,7 +3,7 @@
 //Get It helps us to register and retrieve services from the service locator.
 
 import 'package:get_it/get_it.dart';
-import 'package:get_it_demo/domain/suggestion_controller.dart';
+import 'package:get_it_demo/controllers/suggestion_controller.dart';
 import 'package:get_it_demo/services/getSuggestion_service.dart';
 
 //TODO 2: CREATE A GET IT LOCATOR
@@ -15,7 +15,8 @@ void setupLocator() {
   //Register our services
   locator.registerLazySingleton<ApiService>(() => ApiService());
   locator.registerLazySingleton<SuggestionController>(
-      () => SuggestionController());
+    () => SuggestionController(),
+  );
 }
 
 // With Get it we dont have to create instances of classes to pass
