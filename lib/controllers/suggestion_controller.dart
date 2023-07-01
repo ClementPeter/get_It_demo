@@ -4,7 +4,7 @@ import 'package:get_it_demo/services/getSuggestion_service.dart';
 import '../locator.dart';
 
 class SuggestionController {
-// ApiService apiService = ApiService(); //- Needed if your calling Directly
+// ApiService apiService = ApiService(); //Needed if your calling Directly
   getNextSuggestion() async {
     //to get next suggestion we need to call our API service
     //rather than calling it directly; we will use our locator using getIt
