@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_it_demo/locator.dart';
 import 'package:get_it_demo/models/suggestion.dart';
 import 'package:get_it_demo/controllers/suggestion_controller.dart';
-import 'package:get_it_demo/locator.dart';
+//import 'package:get_it_demo/locator.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -13,6 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   bool isLoading = false; //triggers loading state values
 
   Suggestion? visibleSuggestion; //Holds data for suggestion from API
@@ -91,8 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
           //calling Suggestion from API directly with Get-It
           // Suggestion suggestion =
           //     await locator.get<SuggestionController>().getNextSuggestion();
-          Suggestion suggestion =
-              await locator.get<SuggestionController>().getNextSuggestion();
+         // Suggestion suggestion =              await locator.get<SuggestionController>().getNextSuggestion();
+         Suggestion suggestion = await locator.get<SuggestionController>().getNextSuggestion();
           //TODO 7 Use Setsate to update our UI
           setState(() {
             print(":::setState:::Pressed:::::::");
